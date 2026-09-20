@@ -73,22 +73,30 @@ System.out.println(tree.inOrder());    // [1, 2, 3, 5, 6, 7]
 
 ## Build and test
 
-Requires JDK 11 or newer. No external dependencies are needed.
+Requires JDK 11 or newer. The tree and GUI have no external dependencies; only
+`TestBST` needs JUnit 5. Its tests are split into named `@Test` methods with
+fixed seeds for reproducibility, and run against the JUnit Platform Console
+Launcher's single standalone jar, so no Maven or Gradle is needed. Download it
+once into an untracked `lib/` folder:
+
+```sh
+mkdir -p lib
+curl -L -o lib/junit-platform-console-standalone-1.11.3.jar \
+    https://repo1.maven.org/maven2/org/junit/platform/junit-platform-console-standalone/1.11.3/junit-platform-console-standalone-1.11.3.jar
+```
+
+Then compile and run:
 
 ```sh
 mkdir -p build
-javac -Xlint:all -Werror -d build src/main/*.java src/tests/*.java
-java -cp build tests.TestBST
+javac -Xlint:all -Werror -cp lib/junit-platform-console-standalone-1.11.3.jar -d build src/main/*.java src/tests/*.java
+java -jar lib/junit-platform-console-standalone-1.11.3.jar execute -cp build \
+    --select-class tests.TestBST --details=tree
 ```
 
 The regression suite checks empty trees, traversals, statistics, duplicate
 handling, removal, and null rejection. It also compares 10,000 randomized
-insertion/removal operations against Java's `TreeSet`. Each run generates fresh
-random values and prints its seed. Reproduce a run by passing that seed:
-
-```sh
-java -cp build tests.TestBST 12345
-```
+insertion/removal operations against Java's `TreeSet`.
 
 Generate the tree's API documentation with:
 
