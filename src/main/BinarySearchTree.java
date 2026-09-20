@@ -25,6 +25,15 @@ public class BinarySearchTree<T extends Comparable<? super T>> {
     }
 
     /**
+     * Returns the root node for read-only traversal, such as rendering the tree.
+     *
+     * @return the root, or null when empty
+     */
+    public BinaryNode<T> root() {
+        return root;
+    }
+
+    /**
      * Inserts a value unless a comparison-equivalent value already exists.
      *
      * @param val the value to insert

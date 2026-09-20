@@ -96,27 +96,18 @@ Generate the tree's API documentation with:
 javadoc -d docs -sourcepath src src/main/BinarySearchTree.java
 ```
 
-## Console driver
+## Interactive explorer
 
-Run `java -cp build main.BinarySearchTreeDriver`. It reads:
+Run `java -cp build main.BinarySearchTreeDriver` to open a Swing window that
+visualizes a `BinarySearchTree<Integer>`:
 
-1. A count of insertion lines, followed by those lines of whitespace-separated strings.
-2. A count of search values, followed by those values.
-3. A count of removal values, followed by those values.
+- Type integers separated by spaces into the field, then click **Add**,
+  **Remove**, or **Find** (or press Enter to add).
+- **Fit tree** recenters and rescales the view.
+- Scroll to zoom, and drag the canvas to pan.
 
-Example input:
-
-```text
-1
-D B F A C E G
-2
-D Z
-1
-D
-```
-
-The driver prints traversals and statistics, reports search results, and performs
-removals. It stores strings, so values use lexicographic ordering.
+Insertions and removals animate, and the header shows live node/height/leaf
+counts.
 
 ## Performance and limitations
 
